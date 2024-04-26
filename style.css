@@ -10,12 +10,11 @@ html,body{
 }
 
 section img {
-    height: 118px;
-    width: 118px;
+    height: 120px;
+    width: 120px;
 }
 
 #navbar{
-    height: 120px;
     width: 100%;
     display: flex;
     justify-content:space-around;
@@ -32,7 +31,7 @@ section img {
 
 #nav-elements  li a{
     text-decoration: none;
-    padding: 0 15px;
+    padding: 0 20px;
     font-size: 23px;
     font-weight:600;
     color:rgb(36, 105, 161);
@@ -74,6 +73,7 @@ section img {
 #about p{
     text-align:justify;
     font-size:20px;
+    padding:10px 10px 0px 10px;
 }
 
 #img{
