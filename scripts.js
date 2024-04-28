@@ -60,11 +60,15 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault(); // Prevent form submission
         
         // Getting form fields for validation
-        const nameField = document.querySelector(".signup input[name='name']");
-        const phoneField = document.querySelector(".signup input[name='number']");
-        const emailField = document.querySelector(".signup input[name='email']");
-        const passwordField = document.querySelector(".signup input[name='password']");
-        const confirmPasswordField = document.querySelector(".signup input[name='confirm_password']");
+        const nameField = document.getElementById("signup-name");
+        const phoneField = document.getElementById("signup-number");
+        const emailField = document.getElementById("signup-email");
+        const passwordField = document.getElementById("signup-password");
+        const confirmPasswordField = document.getElementById("confirm-password");
+
+        // Clear existing validation messages
+        const validationMessages = document.querySelectorAll('.validation-message');
+        validationMessages.forEach(message => message.remove());
 
         // Validating each field
         const isValidName = validateName(nameField.value);
@@ -75,27 +79,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Displaying error messages if any field is invalid
         if (!isValidName) {
-            alert("Please enter a valid name with at least 6 characters.");
-            return;
+            showValidationMessage(nameField, "Please enter a valid name with at least 6 characters.");
         }
         if (!isValidPhone) {
-            alert("Please enter a valid phone number with 10 digits only.");
-            return;
+            showValidationMessage(phoneField, "Please enter a valid phone number with 10 digits only.");
         }
         if (!isValidEmail) {
-            alert("Please enter a valid email address.");
-            return;
+            showValidationMessage(emailField, "Please enter a valid email address.");
         }
         if (!isValidPassword) {
-            alert("Password should be at least 6 characters long.");
-            return;
+            showValidationMessage(passwordField, "Password should be at least 6 characters long.");
         }
         if (!isPasswordConfirmed) {
-            alert("Passwords do not match. Please confirm your password.");
-            return;
+            showValidationMessage(confirmPasswordField, "Passwords do not match. Please confirm your password.");
         }
 
         // If all fields are valid, you can submit the form or perform any additional actions here
         // signupForm.submit(); // Uncomment this line to submit the form
     });
+
+    // Function to display validation messages
+    function showValidationMessage(field, message) {
+        const validationMessage = document.createElement('p');
+        validationMessage.classList.add('validation-message');
+        validationMessage.textContent = message;
+        field.parentNode.appendChild(validationMessage);
+    }
 });
